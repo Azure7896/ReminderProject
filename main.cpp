@@ -11,5 +11,3 @@ int main(int argc, char *argv[])
     w.show();
     return Reminder.exec();
 }
-
-//RepositoryTest
