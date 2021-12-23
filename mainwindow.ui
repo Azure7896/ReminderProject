@@ -2,12 +2,15 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>480</width>
+    <height>640</height>
    </rect>
   </property>
   <property name="font">
@@ -23,16 +26,31 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#centralwidget {background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0.52809 rgba(0, 137, 216, 153), stop:1 rgba(255, 255, 255, 255));}</string>
+   <string notr="true"/>
+  </property>
+  <property name="inputMethodHints">
+   <set>Qt::ImhNone</set>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonTextOnly</enum>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
+  <property name="dockNestingEnabled">
+   <bool>false</bool>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="loginButton">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>390</y>
-      <width>101</width>
-      <height>41</height>
+      <x>210</x>
+      <y>330</y>
+      <width>70</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="font">
@@ -68,10 +86,10 @@
    <widget class="QPushButton" name="registerButton">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>510</y>
-      <width>75</width>
-      <height>35</height>
+      <x>240</x>
+      <y>378</y>
+      <width>101</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -86,9 +104,15 @@
      <string notr="true">color: orange;</string>
     </property>
     <property name="text">
-     <string>Rejestracja</string>
+     <string>Zarejestruj się</string>
     </property>
     <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="autoRepeat">
+     <bool>false</bool>
+    </property>
+    <property name="autoExclusive">
      <bool>false</bool>
     </property>
     <property name="autoDefault">
@@ -98,51 +122,15 @@
      <bool>false</bool>
     </property>
     <property name="flat">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="closeButton">
-    <property name="geometry">
-     <rect>
-      <x>710</x>
-      <y>510</y>
-      <width>75</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: red;</string>
-    </property>
-    <property name="text">
-     <string>Wyjście</string>
-    </property>
-    <property name="checkable">
-     <bool>false</bool>
-    </property>
-    <property name="autoDefault">
-     <bool>false</bool>
-    </property>
-    <property name="default">
-     <bool>false</bool>
-    </property>
-    <property name="flat">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>240</y>
-      <width>281</width>
+      <x>160</x>
+      <y>230</y>
+      <width>181</width>
       <height>31</height>
      </rect>
     </property>
@@ -150,9 +138,9 @@
    <widget class="QLineEdit" name="lineEdit_2">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>300</y>
-      <width>281</width>
+      <x>160</x>
+      <y>280</y>
+      <width>181</width>
       <height>31</height>
      </rect>
     </property>
@@ -168,8 +156,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>100</y>
+      <x>130</x>
+      <y>80</y>
       <width>301</width>
       <height>91</height>
      </rect>
@@ -196,8 +184,8 @@
    <widget class="QLabel" name="label_login">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>240</y>
+      <x>120</x>
+      <y>230</y>
       <width>81</width>
       <height>31</height>
      </rect>
@@ -209,8 +197,8 @@
    <widget class="QLabel" name="label_haslo">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>310</y>
+      <x>120</x>
+      <y>290</y>
       <width>41</width>
       <height>16</height>
      </rect>
@@ -219,36 +207,46 @@
      <string>Haslo:</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_question">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>390</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Nie masz konta?</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="main_window_background">
+    <property name="geometry">
+     <rect>
+      <x>-270</x>
+      <y>-110</y>
+      <width>1021</width>
+      <height>871</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">main_window_background {}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+    <property name="openExternalLinks">
+     <bool>false</bool>
+    </property>
+   </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>closeButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>731</x>
-     <y>547</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>743</x>
-     <y>572</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

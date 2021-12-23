@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include <calendarwindow.h>
-#include <QTimer>
+
 namespace Ui {
 class Userentries;
 }
@@ -15,7 +15,6 @@ class Userentries : public QDialog
 public:
     explicit Userentries(QWidget *parent = nullptr);
     ~Userentries();
-    void clock();
 
 private slots:
     void on_pushButton_clicked();
@@ -23,7 +22,6 @@ private slots:
 private:
     Ui::Userentries *ui;
     calendarWindow *CalendarWindow;
-    QTimer *clock_timer;
 
 
 };

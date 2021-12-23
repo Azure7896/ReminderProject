@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
+#include <QPixmap>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -8,7 +9,13 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QPixmap background ("C:/Users/Azure/Desktop/background.jpg");
+    ui->main_window_background->setPixmap(background);
+    this->setFixedSize((QSize(480,640)));
+
+
 }
+
 
 MainWindow::~MainWindow()
 {
@@ -28,7 +35,8 @@ void MainWindow::on_loginButton_clicked()
             UserEntries = new Userentries(this);
             UserEntries -> show();
         }
-            else {
+
+        else {
                 QMessageBox::information(this, "Login", "Dane niepoprawne, spróbuj ponownie");
         }
 

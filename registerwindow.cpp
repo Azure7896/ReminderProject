@@ -7,6 +7,7 @@ registerwindow::registerwindow(QWidget *parent) :
     ui(new Ui::registerwindow)
 {
     ui->setupUi(this);
+
 }
 
 registerwindow::~registerwindow()
@@ -19,4 +20,5 @@ void registerwindow::on_registerbutton_clicked()
     QString registerlogin = ui->register_login-> text();
     QString registerpassword = ui->register_password-> text();
 }
+
 
