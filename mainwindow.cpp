@@ -24,19 +24,20 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
 void MainWindow::on_loginButton_clicked()
 {
     QString username = ui->lineEdit -> text();
     QString password = ui->lineEdit_2 -> text();
         if (username== "szymon.napora" && password=="12345"){
-            QMessageBox::information(this, "Login", "<FONT COLOR='#FFFFFF'>Are you ready?</FONT>");
+            QMessageBox::information(this, "Login", "<FONT COLOR='#FFFFFF'>Zalogowano pomyślnie.</FONT>");
             hide();
             UserEntries = new Userentries(this);
             UserEntries -> show();
         }
 
         else {
-                QMessageBox::information(this, "Login", "<FONT COLOR='#FFFFFF'>Are you ready?</FONT>");
+                QMessageBox::information(this, "Login", "<FONT COLOR='#FFFFFF'>Poświadczenia niepoprawne, spróbuj ponownie.</FONT>");
         }
 
 }
