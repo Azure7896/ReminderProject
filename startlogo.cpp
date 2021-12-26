@@ -1,8 +1,6 @@
 #include "startlogo.h"
 #include "ui_startlogo.h"
 #include <QPixmap>
-#include <QSize>
-#include <QTabBar>
 
 startlogo::startlogo(QWidget *parent) :
     QDialog(parent),
@@ -28,4 +26,6 @@ void startlogo::on_start_button_clicked()
     mainwindow->show();
 
 }
+
+
 
