@@ -21,6 +21,7 @@ public:
 private slots:
  void on_loginButton_clicked();
  void on_registerButton_clicked();
+ void on_external_link_clicked();
 
 private:
     Ui::MainWindow *ui;
