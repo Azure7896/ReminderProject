@@ -1,5 +1,6 @@
 #include "registerwindow.h"
 #include "ui_registerwindow.h"
+#include <QResource>
 
 
 registerwindow::registerwindow(QWidget *parent) :
@@ -7,7 +8,8 @@ registerwindow::registerwindow(QWidget *parent) :
     ui(new Ui::registerwindow)
 {
     ui->setupUi(this);
-
+    QResource::registerResource(":/new/prefix1/");
+    this->setFixedSize((QSize(480,500)));
 }
 
 registerwindow::~registerwindow()

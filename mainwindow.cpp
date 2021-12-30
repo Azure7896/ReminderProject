@@ -29,7 +29,7 @@ void MainWindow::on_loginButton_clicked() //Checking credentials
 {
     QString username = ui->login_line -> text();
     QString password = ui->password_line-> text();
-        if (username== "szymon.napora" && password=="12345"){
+        if (username== "x" && password=="x"){
             QMessageBox::information(this, " ", "Zalogowano pomyślnie. Naciśnij OK, aby kontyunować.");
             hide();
             UserEntries = new Userentries(this);
