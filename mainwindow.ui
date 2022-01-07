@@ -3223,7 +3223,7 @@ font-size: 12px;
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>210</x>
+      <x>170</x>
       <y>170</y>
       <width>161</width>
       <height>31</height>
@@ -3812,7 +3812,7 @@ font-size: 12px;
      </font>
     </property>
     <property name="text">
-     <string>Zaloguj się</string>
+     <string>Podaj dane logowania:</string>
     </property>
    </widget>
   </widget>
