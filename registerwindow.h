@@ -2,6 +2,7 @@
 #define REGISTERWINDOW_H
 
 #include <QDialog>
+#include "database.h"
 
 namespace Ui {
 class registerwindow;
@@ -17,7 +18,6 @@ public:
 
 private slots:
     void on_registerbutton_clicked();
-
 private:
     Ui::registerwindow *ui;
 };

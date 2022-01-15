@@ -5,6 +5,7 @@
 #include <QtSql>
 #include <QSqlDatabase>
 
+
 namespace Ui {
 class database;
 }
@@ -17,8 +18,10 @@ public:
     explicit database(QWidget *parent = nullptr);
     ~database();
 
+
 private:
     Ui::database *ui;
+
 };
 
 #endif // DATABASE_H

@@ -14,6 +14,4 @@ database::~database()
     delete ui;
 }
 
-bool CreateConnection::dbcon() const{
-    return 1;
-}
+

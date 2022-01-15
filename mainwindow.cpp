@@ -5,7 +5,6 @@
 #include <QResource>
 #include <QDesktopServices>
 
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)

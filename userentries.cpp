@@ -1,6 +1,6 @@
 #include "userentries.h"
 #include "ui_userentries.h"
-#include <QDateTime>
+#include <QPair>
 
 
 Userentries::Userentries(QWidget *parent) :
@@ -8,7 +8,8 @@ Userentries::Userentries(QWidget *parent) :
     ui(new Ui::Userentries)
 {
     ui->setupUi(this);
-}
+    this->setFixedSize((QSize(480,640)));
+    }
 
 Userentries::~Userentries()
 {
@@ -20,9 +21,17 @@ Userentries::~Userentries()
 
 void Userentries::on_pushButton_clicked()
 {
-    CalendarWindow = new calendarWindow();
-    CalendarWindow -> show();
+    QString add = ui->text_line->text();
+    QString add2 = ui->date_text->text();
+    QString testowy = "text";
+
+    ui->listWidget->addItem(QString("%1 ◔ %2").arg(add, add2, testowy));
+
+
 }
+
+
+
 
 
 
