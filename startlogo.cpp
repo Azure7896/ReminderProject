@@ -11,7 +11,6 @@ startlogo::startlogo(QWidget *parent) :
     QPixmap logo ("C:/Users/Azure/Desktop/ReminderLogo.png");
     ui->label_start_Logo->setPixmap(logo);
     this->setFixedSize((QSize(570,360)));
-
 }
 
 startlogo::~startlogo()

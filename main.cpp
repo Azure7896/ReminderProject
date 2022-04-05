@@ -1,5 +1,4 @@
 #include "startlogo.h"
-
 #include <QApplication>
 #include <QLabel>
 

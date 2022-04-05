@@ -2,7 +2,6 @@
 #define REGISTERWINDOW_H
 
 #include <QDialog>
-#include "database.h"
 
 namespace Ui {
 class registerwindow;

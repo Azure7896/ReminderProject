@@ -2008,7 +2008,6 @@ border-width:</string>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: #F5F5F5;
-border: 5px solid #ffff;
 border-radius:  5px;
 color:  black;
 font-family: lato-light;

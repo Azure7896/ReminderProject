@@ -3,8 +3,8 @@
 
 #include <QMainWindow>
 #include <userentries.h>
-#include <calendarwindow.h>
 #include <registerwindow.h>
+#include <database.h>
 
 
 QT_BEGIN_NAMESPACE
@@ -16,6 +16,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    database databaseController;
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
@@ -28,5 +29,10 @@ private:
     Ui::MainWindow *ui;
     Userentries *UserEntries;
     registerwindow *RegisterWindow;
+    QString username;
+    QString password;
+    QString isTrue;
+    QString dbPathVar;
+
 };
 #endif // MAINWINDOW_H
