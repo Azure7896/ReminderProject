@@ -28,7 +28,7 @@ bool DataBase::registerAccount(QString login, QString password) {
     QByteArray bytes = QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Md5);
     passwordToCheck = QString(bytes.toHex());
     QSqlQuery query;
-       query.prepare("INSERT INTO UserEntries (idUser, name, password) "
+       query.prepare("INSERT INTO UserEntries (idUser, name password) "
                      "VALUES (?,?,?);");
        query.addBindValue(2);
        query.addBindValue(login);
@@ -38,38 +38,36 @@ bool DataBase::registerAccount(QString login, QString password) {
 }
 
 QSqlQuery DataBase::loadFromDatabase() {
-       QString q = QString("SELECT * FROM UserEntries");
+       QString q = QString("SELECT Name, Date, Priority, Time FROM UserEntries");
        QSqlQuery query(q);
        query.exec();
        return query;
-       /*query.next();
-           idFromDatabase = query.value(0).toString();
-           nameFromDatabase = query.value(1).toString();
-           dateFromDatabase = query.value(2).toString();
-           priorityFromDatabase = query.value(3).toString();
-           hoursFromDatabase = query.value(4).toString();
-           minutesFromDatabase = query.value(5).toString();
-           hoursFromDatabaseInt = hoursFromDatabase.toInt();
-           minutesFromDatabaseInt = minutesFromDatabase.toInt();
-           queriesCount++;
-           if (hoursFromDatabaseInt == 0) {
-               hoursFromDatabase="00";
-           }
-           else if (minutesFromDatabaseInt == 0) {
-                   minutesFromDatabase="00";
-               }
-           else {
-           }
-           if ((priorityFromDatabase == "Ważne")) {
-             QString result = (QString("%1 | %2  | %3   |   ◔ %4:%5     |    %6").arg(idFromDatabase, nameFromDatabase, dateFromDatabase, hoursFromDatabase, minutesFromDatabase, priorityFromDatabase));
-             return result;
-           } else  {
-             QString result = (QString("%1 | %2  | %3   |   ◔ %4:%5     ").arg(idFromDatabase, nameFromDatabase, dateFromDatabase, hoursFromDatabase, minutesFromDatabase));
-             return result;
-            }
-       query.exec();
-       db.close(); */
 }
+
+QSqlQuery DataBase::loadFromDatabaseByDesc() {
+    QString q = QString("SELECT Name, Date, Priority, Time FROM UserEntries ORDER BY Name desc");
+    QSqlQuery query(q);
+    query.exec();
+    return query;
+}
+
+QSqlQuery DataBase::loadFromDatabaseByAscend() {
+    QString q = QString("SELECT Name, Date, Priority, Time FROM UserEntries ORDER BY Name");
+    QSqlQuery query(q);
+    query.exec();
+    return query;
+}
+
+QSqlQuery DataBase::loadFromDatabaseByItem(QString item) {
+    QSqlQuery query;
+    query.prepare("SELECT Name, Date, Priority, Time FROM UserEntries WHERE name LIKE ?");
+     query.addBindValue("%%" + item + "%");
+     query.exec();
+     return query;
+}
+
+
+
 
 void DataBase::refreshIDs() {
     QSqlQuery query;
@@ -91,34 +89,27 @@ void DataBase::queriesCountToOne(){
     queriesCount = 1;
 }
 
-void DataBase::addToDatabase(QString latestIDVar, QString nameVar, QString dateVar, QString hoursVar, QString minutesVar, bool checkboxVar) {
+void DataBase::addToDatabase(QString latestIDVar, QString nameVar, QString dateVar, QString time, bool checkboxVar) {
     latestIDVarInt = latestIDVar.toInt();
-    hoursVarInt = hoursVar.toInt();
-    minutesVarInt = minutesVar.toInt();
         if (checkboxVar==true){
             const QString priorityVar = "Ważne";
                 QSqlQuery query;
-                   db.open();
-                   query.prepare("INSERT INTO UserEntries (id, Name, Date, Priority, HOURS, MINUTES) "
-                                 "VALUES (?, ?, ?, ?, ?, ?);");
+                   query.prepare("INSERT INTO UserEntries (id, Name, Date, Priority, Time) "
+                                 "VALUES (?, ?, ?, ?, ?);");
                    query.addBindValue(latestIDVar);
                    query.addBindValue(nameVar);
                    query.addBindValue(dateVar);
                    query.addBindValue(priorityVar);
-                   query.addBindValue(hoursVarInt);
-                   query.addBindValue(minutesVarInt);
+                   query.addBindValue(time);
                    query.exec();
          } else {
-
                 QSqlQuery query;
-                db.open();
-                   query.prepare("INSERT INTO UserEntries (id, Name, Date, Priority, HOURS, MINUTES) "
-                                 "VALUES (?, ?, ?, 'NULL', ?, ?);");
+                   query.prepare("INSERT INTO UserEntries (id, Name, Date, Priority, Time) "
+                                 "VALUES (?, ?, ?, '-', ?);");
                    query.addBindValue(latestIDVar);
                    query.addBindValue(nameVar);
                    query.addBindValue(dateVar);
-                   query.addBindValue(hoursVarInt);
-                   query.addBindValue(minutesVarInt);
+                   query.addBindValue(time);
                    query.exec();
           }
 }
@@ -128,8 +119,6 @@ void DataBase::deleteCurrent() {
     QSqlQuery query;
        query.prepare("DELETE FROM UserEntries WHERE id= ?;");
        query.addBindValue(idNumber);
-      // query.prepare("UPDATE UserEntries SET id = id - 1 WHERE id > ?;");
-      //  query.addBindValue(numberOfRowFromDatabase);
        query.exec();
        query.clear();
 }
@@ -144,46 +133,34 @@ void DataBase::deleteAll() {
 
 QString DataBase::nextRecord() {
     idNumber++;
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName ("C:/Projects/Reminder/reminderdatabase.sqlite");
-    QString q = QString("SELECT id, Name, Date, Priority, HOURS, MINUTES FROM UserEntries WHERE id = %1 LIMIT 1;").arg(idNumber);
-    db.open();
+    QString q = QString("SELECT id, Name, Date, Priority, Time FROM UserEntries WHERE id = %1 LIMIT 1;").arg(idNumber);
     QSqlQuery query(q);
     query.next();
-    numberOfRowFromDatabaseForRemove = query.value(0).toString();
-    nameFromDatabaseForRemove = query.value(1).toString();
-    dateFromDatabaseForRemove = query.value(2).toString();
-    priorityFromDatabaseForRemove = query.value(3).toString();
-    hoursFromDatabaseForRemove = query.value(4).toString();
-    minutesFromDatabaseForRemove = query.value(5).toString();
-    hoursFromDatabaseIntForRemove = hoursFromDatabaseForRemove.toInt();
-    minutesFromDatabaseIntForRemove = minutesFromDatabaseForRemove.toInt();
-    numberOfRowFromDatabaseIntForRemove = numberOfRowFromDatabaseForRemove.toInt();
-    if (numberOfRowFromDatabaseForRemove == "") {
-        //idNumber=idNumber-1;
+    numberOfRowsFromDatabaseToRemove = query.value(0).toString();
+    nameFromDatabaseToRemove = query.value(1).toString();
+    dateFromDatabaseToRemove = query.value(2).toString();
+    priorityFromDatabaseToRemove = query.value(3).toString();
+    time = query.value(4).toString();
+    numberOfRowFromDatabaseIntToRemove = numberOfRowsFromDatabaseToRemove.toInt();
+    if (numberOfRowsFromDatabaseToRemove == "") {
         return "Brak rekordów.";
-    }
-    if (hoursFromDatabaseIntForRemove == 0) {
-        hoursFromDatabaseForRemove="00";
-    }
-    else if (minutesFromDatabaseIntForRemove == 0) {
-            minutesFromDatabaseForRemove="00";
         }
     else {
     }
-    if ((priorityFromDatabaseForRemove == "Ważne")) {
-        QString priorityResult = (QString("%1 | %2 | %3 |  ◔ %4:%5 | %6 ").arg(numberOfRowFromDatabaseForRemove, nameFromDatabaseForRemove, dateFromDatabaseForRemove, hoursFromDatabaseForRemove, minutesFromDatabaseForRemove, priorityFromDatabaseForRemove));
+    if ((priorityFromDatabaseToRemove == "Ważne")) {
+        QString priorityResult = (QString("%1 | %2 | %3 |  ◔ %4:%5 | %6 ").arg(numberOfRowsFromDatabaseToRemove, nameFromDatabaseToRemove, dateFromDatabaseToRemove,
+                                                                               hoursFromDatabaseToRemove, minutesFromDatabaseToRemove, priorityFromDatabaseToRemove));
         return priorityResult;
 
     } else  {
-        priorityFromDatabaseForRemove = " ";
-        QString result  = (QString("%1 | %2 | %3 |  ◔ %4:%5  ").arg(numberOfRowFromDatabaseForRemove, nameFromDatabaseForRemove, dateFromDatabaseForRemove, hoursFromDatabaseForRemove, minutesFromDatabaseForRemove));
+        priorityFromDatabaseToRemove = " ";
+        QString result  = (QString("%1 | %2 | %3 |  ◔ %4:%5  ").arg(numberOfRowsFromDatabaseToRemove, nameFromDatabaseToRemove, dateFromDatabaseToRemove, time));
         return result;
     }
 }
 
 QString DataBase::previousRecord() {
-    idNumber--;
+    /*idNumber--;
     QString q = QString("SELECT id, Name, Date, Priority, HOURS, MINUTES FROM UserEntries WHERE id = %1 LIMIT 1;").arg(idNumber);
     QSqlQuery query(q);
     query.next();
@@ -197,7 +174,6 @@ QString DataBase::previousRecord() {
     minutesFromDatabaseIntForRemove = minutesFromDatabaseForRemove.toInt();
     numberOfRowFromDatabaseIntForRemove = numberOfRowFromDatabaseForRemove.toInt();
     if (numberOfRowFromDatabaseForRemove == "") {
-        //idNumber=idNumber+1;
         return "Brak rekordów.";
     }
     if (hoursFromDatabaseIntForRemove == 0) {
@@ -219,7 +195,7 @@ QString DataBase::previousRecord() {
 }
 
 int DataBase::count(int nCount) {
-    return nCount;
+    return nCount; */
 }
 
 

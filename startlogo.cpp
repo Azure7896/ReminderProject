@@ -8,7 +8,7 @@ startlogo::startlogo(QWidget *parent) :
 {
     setWindowFlags(Qt::CustomizeWindowHint);
     ui->setupUi(this);
-    QPixmap logo ("C:/Users/Azure/Desktop/Reminder/cppqtfiles/reminderlogo.png");
+    QPixmap logo ("C:/Users/Azure/Desktop/reminderlogo.png");
     ui->label_start_Logo->setPixmap(logo);
     this->setFixedSize((QSize(570,360)));
 }

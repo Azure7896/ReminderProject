@@ -23,7 +23,6 @@ private slots:
  void on_loginButton_clicked();
  void on_registerButton_clicked();
  void on_external_link_clicked();
- void connectionCheck();
 
 private:
     Ui::MainWindow *ui;
@@ -33,5 +32,6 @@ private:
     QString password;
     DataBase databaseController;
     User user;
+    void connectionCheck();
 };
 #endif // MAINWINDOW_H

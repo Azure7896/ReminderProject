@@ -607,7 +607,7 @@
    </property>
    <property name="styleSheet">
     <string notr="true">color: #000000;
-  background-color: #FEFEFE;
+  background-color: #FF5349;
   border-radius: 50px;
   display: flex;
   justify-content: center;
@@ -1873,7 +1873,7 @@
    </property>
    <property name="styleSheet">
     <string notr="true">color: #000000;
-  background-color: #FEFEFE;
+  background-color: red;
   border-radius: 50px;
   display: flex;
   justify-content: center;

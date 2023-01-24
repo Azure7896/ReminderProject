@@ -10,7 +10,14 @@ onelementwindow::onelementwindow(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle("Usuwanie rekordów");
+    connectionCheck();
+}
 
+void onelementwindow::connectionCheck() {
+    if (!databaseController.createConnection()) {
+        QMessageBox::information(this, "Problem z bazą danych", "Sprawdź czy plik SQLite istnieje i znajduje się w odpowiednim katalogu");
+        QApplication::quit();
+    }
 }
 
 onelementwindow::~onelementwindow()
@@ -30,13 +37,8 @@ void onelementwindow::on_pushButton_clicked()
 
 void onelementwindow::on_nextButton_clicked()
 {
-          // idNumber++;
-           //numberString = QVariant(idNumber).toString();
            dbResult = databaseController.nextRecord();
-           //ui->label->setText(dbResult);
            if (dbResult == "Brak rekordów.") {
-               //idNumber=idNumber-1;
-              // numberString = QVariant(idNumber).toString();
                QMessageBox::information(this, "Error", "Przekroczyłeś maksymalną liczbę rekordów.");
                QString itemForPrint = databaseController.previousRecord();
                ui->label->setText(itemForPrint);
@@ -64,13 +66,9 @@ void onelementwindow::on_beforeButton_clicked()
     }
 }
 
-
-
-
-
 void onelementwindow::on_deleteAll_clicked()
 {
-    if (QMessageBox::Yes == QMessageBox::question(this, "Tworzenie nowego pliku", "Czy na pewno chcesz usunąć wszystko?", QMessageBox::Yes | QMessageBox::No))
+    if (QMessageBox::Yes == QMessageBox::question(this, "Usuwanie zawartości bazy danych", "Czy na pewno chcesz usunąć wszystkie rekordy?", QMessageBox::Yes | QMessageBox::No))
      databaseController.deleteAll();
 
 }

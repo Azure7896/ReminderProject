@@ -31,6 +31,7 @@ private slots:
     void on_deleteAll_clicked();
 
 private:
+    void connectionCheck();
     Ui::onelementwindow *ui;
     int idNumber = 0;
     QString countString;

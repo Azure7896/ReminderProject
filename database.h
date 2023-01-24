@@ -8,11 +8,16 @@
 #include <QSqlDatabase>
 
 class DataBase {
-  public: DataBase();
+  public:
+  DataBase();
   bool createConnection();
   bool login(User user);
-  bool registerAccount(QString login, QString password);
-  void addToDatabase(QString latestIDVar, QString nameVar, QString dateVar, QString hoursVar, QString minutesVar, bool checkboxVar);
+  bool registerAccount(QString name, QString password);
+  void addToDatabase(QString latestIDVar, QString nameVar, QString dateVar, QString time, bool checkboxVar);
+  QSqlQuery loadFromDatabase();
+  QSqlQuery loadFromDatabaseByDesc();
+  QSqlQuery loadFromDatabaseByAscend();
+  QSqlQuery loadFromDatabaseByItem(QString item);
   void deleteCurrent();
   void deleteAll();
   void refreshIDs();
@@ -21,14 +26,10 @@ class DataBase {
   int returnQueriesCount();
   QString nextRecord();
   QString previousRecord();
-  QSqlQuery loadFromDatabase();
-  QString loadFromDatabaseByName();
-  QString loadFromDatabaseByPriority();
-  QString searchByRange();
   QSqlQuery query;
 
-  private: int hoursVarInt;
-  int minutesVarInt;
+  private:
+  QString time;
   QString latestIDVar;
   int latestIDVarInt;
   QString latestIDFinal;
@@ -43,19 +44,18 @@ class DataBase {
   int minutesFromDatabaseInt;
   QString passwordToCheck;
   QString Variable;
-  QString nameFromDatabaseForRemove;
-  QString dateFromDatabaseForRemove;
-  QString priorityFromDatabaseForRemove;
-  QString hoursFromDatabaseForRemove;
-  QString minutesFromDatabaseForRemove;
-  int hoursFromDatabaseIntForRemove;
-  int minutesFromDatabaseIntForRemove;
-  int numberOfRowFromDatabaseIntForRemove;
-  QString numberOfRowFromDatabaseForRemove;
+  QString nameFromDatabaseToRemove;
+  QString dateFromDatabaseToRemove;
+  QString priorityFromDatabaseToRemove;
+  QString hoursFromDatabaseToRemove;
+  QString minutesFromDatabaseToRemove;
+  int hoursFromDatabaseIntToRemove;
+  int minutesFromDatabaseIntToRemove;
+  int numberOfRowFromDatabaseIntToRemove;
+  QString numberOfRowsFromDatabaseToRemove;
   int nCount;
   int idNumber = 0;
   int queriesCount = 1;
-  QSqlDatabase db;
   QString result;
 
 };

@@ -27,30 +27,23 @@ private slots:
 
     void closeEvent(QCloseEvent* event);
 
-    void on_byID_clicked();
-
-    void on_loadFromDatabaseButton_clicked();
-
-    void on_searchItemsWindow_clicked();
-
-    void on_sortByNameButton_clicked();
-
     void on_removeItemWindowButton_clicked();
 
     void on_addNewItemButton_clicked();
 
-    void on_byName2_clicked();
-
-    void on_byPriority_clicked();
-
-    void on_searchRange_clicked();
-
-    void connectionCheck();
 
     void on_loadAll_clicked();
 
-private:
+    void on_byDesc_clicked();
 
+    void on_sortByNameButton_clicked();
+
+    void on_searchItemsWindow_clicked();
+
+    void on_search_clicked();
+
+private:
+    void connectionCheck();
     QString priorityVarUI = "Ważne";
     DataBase databaseController;
     Ui::Userentries *ui;

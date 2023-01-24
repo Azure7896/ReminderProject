@@ -15,4 +15,4 @@ QString User::getName() {
 
 QString User::getPassword() {
       return this->password;
-    }
+}
