@@ -38,9 +38,9 @@ private slots:
 
     void on_sortByNameButton_clicked();
 
-    void on_searchItemsWindow_clicked();
-
     void on_search_clicked();
+
+    void on_byPriority_clicked();
 
 private:
     void connectionCheck();

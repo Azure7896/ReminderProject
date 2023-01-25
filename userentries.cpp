@@ -43,24 +43,22 @@ void Userentries::connectionCheck() {
 }
 
 void Userentries::on_addNewItemButton_clicked() {
-  latestIDVarUI = ui -> idLine -> text();
-  nameVarUI = ui -> textLine -> text();
-  dateVarUI = ui -> dateLine -> text();
-  hoursVarUI = ui -> hourLine -> text();
-  minutesVarUI = ui -> minuteLine -> text();
-  checkboxStatus = ui -> priorityCheckbox -> isChecked();
-  latestIDVarIntUI = latestIDVarUI.toInt();
-  hoursVarIntUI = hoursVarUI.toInt();
-  minutesVarIntUI = minutesVarUI.toInt();
-  QString time = hoursVarUI+":"+minutesVarUI;
-  if (latestIDVarIntUI > 50 || latestIDVarIntUI <= 0 || latestIDVarUI.isEmpty() || nameVarUI.isEmpty() || (nameVarUI.size() > 17 || nameVarUI.size() < 4) || dateVarUI.isEmpty() || dateVarUI.size() > 10 || hoursVarUI.isEmpty() ||
-    hoursVarUI.size() > 2 || minutesVarUI.isEmpty() || minutesVarUI.size() > 2 || hoursVarIntUI > 23 || minutesVarIntUI > 59) {
-    QMessageBox::information(this, "Error", "Błędnie wprowadzone dane.");
-  } else {
-    databaseController.addToDatabase(latestIDVarUI, nameVarUI, dateVarUI, time, checkboxStatus);
-    on_loadAll_clicked();
-    QMessageBox::information(this, "Udało się!", "Rekord pomyślnie został dodany do bazy danych.");
-  }
+      nameVarUI = ui -> textLine -> text();
+      dateVarUI = ui -> dateLine -> text();
+      hoursVarUI = ui -> hourLine -> text();
+      minutesVarUI = ui -> minuteLine -> text();
+      checkboxStatus = ui -> priorityCheckbox -> isChecked();
+      hoursVarIntUI = hoursVarUI.toInt();
+      minutesVarIntUI = minutesVarUI.toInt();
+      QString time = hoursVarUI+":"+minutesVarUI;
+      if ((nameVarUI.size() > 17 || nameVarUI.size() < 4) || dateVarUI.isEmpty() || dateVarUI.size() > 10 || hoursVarUI.isEmpty() ||
+        hoursVarUI.size() > 2 || minutesVarUI.isEmpty() || minutesVarUI.size() > 2 || hoursVarIntUI > 23 || minutesVarIntUI > 59) {
+        QMessageBox::information(this, "Error", "Błędnie wprowadzone dane.");
+      } else {
+        databaseController.addToDatabase(nameVarUI, dateVarUI, time, checkboxStatus);
+        on_loadAll_clicked();
+        QMessageBox::information(this, "Udało się!", "Rekord pomyślnie został dodany do bazy danych.");
+    }
 }
 
 void Userentries::on_removeItemWindowButton_clicked()
@@ -96,17 +94,20 @@ void Userentries::on_sortByNameButton_clicked()
     ui -> tableView -> setModel(model);
 }
 
-
-void Userentries::on_searchItemsWindow_clicked()
-{
-
-}
-
-
 void Userentries::on_search_clicked()
 {
     QSqlQueryModel * model = new QSqlQueryModel();
     model -> setQuery(databaseController.loadFromDatabaseByItem(ui->searchLine->text()));
+    QTableView * view = new QTableView;
+    view -> setModel(model);
+    ui -> tableView -> setModel(model);
+}
+
+
+void Userentries::on_byPriority_clicked()
+{
+    QSqlQueryModel * model = new QSqlQueryModel();
+    model -> setQuery(databaseController.loadFromDatabaseByPriority());
     QTableView * view = new QTableView;
     view -> setModel(model);
     ui -> tableView -> setModel(model);

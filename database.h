@@ -13,11 +13,12 @@ class DataBase {
   bool createConnection();
   bool login(User user);
   bool registerAccount(QString name, QString password);
-  void addToDatabase(QString latestIDVar, QString nameVar, QString dateVar, QString time, bool checkboxVar);
+  void addToDatabase(QString nameVar, QString dateVar, QString time, bool checkboxVar); //QString latestIDVar,
   QSqlQuery loadFromDatabase();
   QSqlQuery loadFromDatabaseByDesc();
   QSqlQuery loadFromDatabaseByAscend();
   QSqlQuery loadFromDatabaseByItem(QString item);
+  QSqlQuery loadFromDatabaseByPriority();
   void deleteCurrent();
   void deleteAll();
   void refreshIDs();

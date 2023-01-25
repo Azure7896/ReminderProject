@@ -66,8 +66,12 @@ QSqlQuery DataBase::loadFromDatabaseByItem(QString item) {
      return query;
 }
 
-
-
+QSqlQuery DataBase::loadFromDatabaseByPriority() {
+    QString q = QString("SELECT Name, Date, Priority, Time FROM UserEntries ORDER BY Priority desc");
+    QSqlQuery query(q);
+    query.exec();
+    return query;
+}
 
 void DataBase::refreshIDs() {
     QSqlQuery query;
@@ -89,14 +93,13 @@ void DataBase::queriesCountToOne(){
     queriesCount = 1;
 }
 
-void DataBase::addToDatabase(QString latestIDVar, QString nameVar, QString dateVar, QString time, bool checkboxVar) {
+void DataBase::addToDatabase(QString nameVar, QString dateVar, QString time, bool checkboxVar) {
     latestIDVarInt = latestIDVar.toInt();
         if (checkboxVar==true){
             const QString priorityVar = "Ważne";
                 QSqlQuery query;
-                   query.prepare("INSERT INTO UserEntries (id, Name, Date, Priority, Time) "
-                                 "VALUES (?, ?, ?, ?, ?);");
-                   query.addBindValue(latestIDVar);
+                   query.prepare("INSERT INTO UserEntries (Name, Date, Priority, Time) "
+                                 "VALUES (?, ?, ?, ?);");
                    query.addBindValue(nameVar);
                    query.addBindValue(dateVar);
                    query.addBindValue(priorityVar);
@@ -104,9 +107,8 @@ void DataBase::addToDatabase(QString latestIDVar, QString nameVar, QString dateV
                    query.exec();
          } else {
                 QSqlQuery query;
-                   query.prepare("INSERT INTO UserEntries (id, Name, Date, Priority, Time) "
-                                 "VALUES (?, ?, ?, '-', ?);");
-                   query.addBindValue(latestIDVar);
+                   query.prepare("INSERT INTO UserEntries (Name, Date, Priority, Time) "
+                                 "VALUES (?, ?, '-', ?);");
                    query.addBindValue(nameVar);
                    query.addBindValue(dateVar);
                    query.addBindValue(time);
