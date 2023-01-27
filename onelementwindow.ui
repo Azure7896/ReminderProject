@@ -1247,7 +1247,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QPushButton" name="beforeButton">
+  <widget class="QPushButton" name="previousButton">
    <property name="geometry">
     <rect>
      <x>320</x>

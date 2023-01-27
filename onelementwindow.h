@@ -22,13 +22,14 @@ public:
     ~onelementwindow();
 
 private slots:
-    void on_beforeButton_clicked();
 
     void on_nextButton_clicked();
 
     void on_pushButton_clicked();
 
     void on_deleteAll_clicked();
+
+    void on_previousButton_clicked();
 
 private:
     void connectionCheck();

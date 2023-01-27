@@ -1,6 +1,7 @@
 #ifndef USERENTRIES_H
 #define USERENTRIES_H
 
+#include "row.h"
 #include <QDialog>
 #include <QSqlDatabase>
 #include <QSql>
@@ -44,7 +45,7 @@ private slots:
 
 private:
     void connectionCheck();
-    QString priorityVarUI = "Ważne";
+    QString const priorityVarUI = "Ważne";
     DataBase databaseController;
     Ui::Userentries *ui;
     QString nameVarUI;
@@ -58,17 +59,13 @@ private:
     QString idFromDatabase;
     QString resultVar;
     onelementwindow *oneElementWindow;
-    int latestIDVarIntUI;
-    int hoursVarIntUI;
-    int minutesVarIntUI;
-    int queries;
     QString firstNumber;
     QString secondNumber;
     int firstNumberInt;
     int secondNumberInt;
     int numberCount;
-    int IntInt;
-    QString IntIntQString;
+    QString time;
+    Row row;
 };
 
 

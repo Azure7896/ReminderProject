@@ -47,8 +47,14 @@ void onelementwindow::on_nextButton_clicked()
            }
 }
 
+void onelementwindow::on_deleteAll_clicked()
+{
+    if (QMessageBox::Yes == QMessageBox::question(this, "Usuwanie zawartości bazy danych", "Czy na pewno chcesz usunąć wszystkie rekordy?", QMessageBox::Yes | QMessageBox::No))
+     databaseController.deleteAll();
 
-void onelementwindow::on_beforeButton_clicked()
+}
+
+void onelementwindow::on_previousButton_clicked()
 {
     //idNumber--;
     //numberString = QVariant (idNumber).toString();
@@ -66,9 +72,3 @@ void onelementwindow::on_beforeButton_clicked()
     }
 }
 
-void onelementwindow::on_deleteAll_clicked()
-{
-    if (QMessageBox::Yes == QMessageBox::question(this, "Usuwanie zawartości bazy danych", "Czy na pewno chcesz usunąć wszystkie rekordy?", QMessageBox::Yes | QMessageBox::No))
-     databaseController.deleteAll();
-
-}

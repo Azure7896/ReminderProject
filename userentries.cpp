@@ -43,19 +43,17 @@ void Userentries::connectionCheck() {
 }
 
 void Userentries::on_addNewItemButton_clicked() {
-      nameVarUI = ui -> textLine -> text();
-      dateVarUI = ui -> dateLine -> text();
-      hoursVarUI = ui -> hourLine -> text();
-      minutesVarUI = ui -> minuteLine -> text();
-      checkboxStatus = ui -> priorityCheckbox -> isChecked();
-      hoursVarIntUI = hoursVarUI.toInt();
-      minutesVarIntUI = minutesVarUI.toInt();
-      QString time = hoursVarUI+":"+minutesVarUI;
-      if ((nameVarUI.size() > 17 || nameVarUI.size() < 4) || dateVarUI.isEmpty() || dateVarUI.size() > 10 || hoursVarUI.isEmpty() ||
-        hoursVarUI.size() > 2 || minutesVarUI.isEmpty() || minutesVarUI.size() > 2 || hoursVarIntUI > 23 || minutesVarIntUI > 59) {
+      row.setName(ui->textLine->text());
+      row.setDate(ui -> dateLine -> text());
+      row.setHours(ui -> hourLine -> text());
+      row.setMinutes(ui -> minuteLine -> text());
+      row.setIsPriority(ui -> priorityCheckbox -> isChecked());
+      time = row.getHours()+":"+row.getMinutes();
+      if ((row.getName().size() > 17 || row.getName().size() < 4) || row.getDate().isEmpty() || row.getDate().size() > 10 || row.getHours().isEmpty() ||
+        row.getHours().size() > 2 || row.getMinutes().isEmpty() || row.getMinutes().size() > 2 || row.getHours().toInt() > 23 || row.getMinutes().toInt() > 59) {
         QMessageBox::information(this, "Error", "Błędnie wprowadzone dane.");
       } else {
-        databaseController.addToDatabase(nameVarUI, dateVarUI, time, checkboxStatus);
+        databaseController.addToDatabase(row.getName(), row.getDate(), time, row.getIsPriority());
         on_loadAll_clicked();
         QMessageBox::information(this, "Udało się!", "Rekord pomyślnie został dodany do bazy danych.");
     }
