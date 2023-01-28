@@ -12,7 +12,7 @@ class DataBase {
   DataBase();
   bool createConnection();
   bool login(User user);
-  bool registerAccount(QString name, QString password);
+  void registerAccount(User user);
   void addToDatabase(QString nameVar, QString dateVar, QString time, bool checkboxVar); //QString latestIDVar,
   QSqlQuery loadFromDatabase();
   QSqlQuery loadFromDatabaseByDesc();
@@ -31,8 +31,6 @@ class DataBase {
 
   private:
   QString time;
-  QString latestIDVar;
-  int latestIDVarInt;
   QString latestIDFinal;
   QString idFromDatabase;
   QString resultVar;
@@ -43,8 +41,7 @@ class DataBase {
   QString minutesFromDatabase;
   int hoursFromDatabaseInt;
   int minutesFromDatabaseInt;
-  QString passwordToCheck;
-  QString Variable;
+  QString encryptedPassword;
   QString nameFromDatabaseToRemove;
   QString dateFromDatabaseToRemove;
   QString priorityFromDatabaseToRemove;

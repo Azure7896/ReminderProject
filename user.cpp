@@ -16,3 +16,15 @@ QString User::getName() {
 QString User::getPassword() {
       return this->password;
 }
+
+void User::setName(QString name) {
+    this->name = name;
+}
+
+void User::setPassword(QString password) {
+    this->password = password;
+}
+
+
+
+

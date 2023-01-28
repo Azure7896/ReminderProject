@@ -70,7 +70,6 @@ void Userentries::closeEvent(QCloseEvent * event) {
   if (QMessageBox::Yes == QMessageBox::question(this, "Wyjście", "Czy na pewno chcesz wyjść?", QMessageBox::Yes | QMessageBox::No)) {
     event -> accept();
   }
-
 }
 
 void Userentries::on_byDesc_clicked()

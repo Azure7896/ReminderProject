@@ -21,6 +21,10 @@ private slots:
 private:
     Ui::registerwindow *ui;
     DataBase databaseController;
+    QString registerLogin;
+    QString registerPassword;
+    QString confirmPassword;
+    User user;
 };
 
 #endif // REGISTERWINDOW_H

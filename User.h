@@ -10,6 +10,8 @@ public:
     int getUserId();
     QString getName();
     QString getPassword();
+    void setName(QString name);
+    void setPassword(QString password);
 private:
     int idUser;
     QString name;

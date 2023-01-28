@@ -23,7 +23,7 @@ MainWindow::~MainWindow() {
   delete ui;
 }
 
-//Checking connection - when connection to the DB isn't working, apllication will be close
+//Checking database connection, when it's not working, program will be closed
 void MainWindow::connectionCheck() {
     if (!databaseController.createConnection()) {
         QMessageBox::information(this, "Problem z bazą danych", "Sprawdź czy plik SQLite istnieje i znajduje się w odpowiednim katalogu");
@@ -33,12 +33,9 @@ void MainWindow::connectionCheck() {
 
 //Logging and checking credentials
 void MainWindow::on_loginButton_clicked() {
-  username = ui -> login_line -> text();
-  password = ui -> password_line -> text();
-  //Tutaj skonczylem nie dziala klasa User
-  QString test = user.getPassword();
-  //databaseController.login(user)
-  if (true) {
+  user.setName(ui->login_line -> text());
+  user.setPassword(ui->password_line -> text());
+  if (databaseController.login(user)) {
       QMessageBox::information(this, "Witaj w ReminderProject!", "Zalogowano pomyślnie. Naciśnij OK, aby kontyunować.");
       hide();
       UserEntries = new Userentries(this);

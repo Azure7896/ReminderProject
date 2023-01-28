@@ -15,26 +15,25 @@ bool DataBase::createConnection(){
 }
 
 bool DataBase::login(User user) {
-    QSqlQuery query("SELECT name, password FROM Users");
-       query.next();
-           QString userLoginFromDatabase = query.value(0).toString();
-           QString userPasswordFromDatabase = query.value(1).toString();
-           QByteArray bytes = QCryptographicHash::hash(user.getPassword().toUtf8(), QCryptographicHash::Md5);
-           passwordToCheck = QString(bytes.toHex());
-           return (user.getName() == userLoginFromDatabase && passwordToCheck == userPasswordFromDatabase);
+    QByteArray bytes = QCryptographicHash::hash(user.getPassword().toUtf8(), QCryptographicHash::Md5);
+    encryptedPassword = QString(bytes.toHex());
+    QSqlQuery query;
+        query.prepare("SELECT name, password FROM Users WHERE name= ? AND password = ?");
+        query.addBindValue(user.getName());
+        query.addBindValue(encryptedPassword);
+        query.exec();
+        return query.first();
 }
 
-bool DataBase::registerAccount(QString login, QString password) {
-    QByteArray bytes = QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Md5);
-    passwordToCheck = QString(bytes.toHex());
+void DataBase::registerAccount(User user) {
+    QByteArray bytes = QCryptographicHash::hash(user.getPassword().toUtf8(), QCryptographicHash::Md5);
+    encryptedPassword= QString(bytes.toHex());
     QSqlQuery query;
-       query.prepare("INSERT INTO UserEntries (idUser, name password) "
-                     "VALUES (?,?,?);");
-       query.addBindValue(2);
-       query.addBindValue(login);
-       query.addBindValue(passwordToCheck);
+       query.prepare("INSERT INTO Users (name, password) "
+                     "VALUES (?, ?);");
+       query.addBindValue(user.getName());
+       query.addBindValue(encryptedPassword);
        query.exec();
-       return true;
 }
 
 QSqlQuery DataBase::loadFromDatabase() {
@@ -94,7 +93,6 @@ void DataBase::queriesCountToOne(){
 }
 
 void DataBase::addToDatabase(QString nameVar, QString dateVar, QString time, bool checkboxVar) {
-    latestIDVarInt = latestIDVar.toInt();
         if (checkboxVar==true){
             const QString priorityVar = "Ważne";
                 QSqlQuery query;
