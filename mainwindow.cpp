@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget * parent): QMainWindow(parent), ui(new Ui::MainWi
   this -> setFixedSize((QSize(480, 640)));
   this -> setWindowTitle("ReminderProject by Szymon Napora 5ION");
   connectionCheck();
+  ui->login_line->setFocus();
 }
 
 MainWindow::~MainWindow() {

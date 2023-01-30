@@ -7233,6 +7233,9 @@
    <property name="text">
     <string>Dodaj</string>
    </property>
+   <property name="default">
+    <bool>true</bool>
+   </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">

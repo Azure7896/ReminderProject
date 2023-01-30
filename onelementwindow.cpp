@@ -29,7 +29,7 @@ onelementwindow::~onelementwindow()
 void onelementwindow::on_pushButton_clicked()
 {
     if (QMessageBox::Yes == QMessageBox::question(this, "Usuwanie", "Czy na pewno chcesz usunąć wybrany rekord?", QMessageBox::Yes | QMessageBox::No)) {
-        databaseController.deleteCurrent();
+        //databaseController.deleteCurrent();
         databaseController.refreshIDs();
     }
 }

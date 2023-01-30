@@ -20,6 +20,7 @@ Userentries::Userentries(QWidget * parent):
     this -> setWindowTitle("ReminderProject by Szymon Napora 5ION");
     connectionCheck();
     on_loadAll_clicked();
+    ui->nameLabel->setFocus();
   }
 
 

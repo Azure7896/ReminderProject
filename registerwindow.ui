@@ -2096,6 +2096,9 @@
    <property name="text">
     <string>Zarejestruj</string>
    </property>
+   <property name="default">
+    <bool>true</bool>
+   </property>
   </widget>
   <widget class="QLabel" name="label_confirm_password">
    <property name="geometry">

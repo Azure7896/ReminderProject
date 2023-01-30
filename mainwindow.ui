@@ -2041,6 +2041,15 @@ border-width:</string>
     <property name="text">
      <string>Zaloguj</string>
     </property>
+    <property name="autoDefault">
+     <bool>true</bool>
+    </property>
+    <property name="default">
+     <bool>true</bool>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLabel" name="background_texutre_information">
     <property name="geometry">

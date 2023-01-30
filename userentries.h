@@ -32,7 +32,6 @@ private slots:
 
     void on_addNewItemButton_clicked();
 
-
     void on_loadAll_clicked();
 
     void on_byDesc_clicked();
@@ -44,26 +43,11 @@ private slots:
     void on_byPriority_clicked();
 
 private:
-    void connectionCheck();
-    QString const priorityVarUI = "Ważne";
-    DataBase databaseController;
     Ui::Userentries *ui;
-    QString nameVarUI;
-    QString dateVarUI;
-    QString hoursVarUI;
-    QString minutesVarUI;
+    void connectionCheck();
+    DataBase databaseController;
     bool checkboxStatus;
-    int hoursFromDatabaseInt;
-    int minutesFromDatabaseInt;
-    QString latestIDVarUI;
-    QString idFromDatabase;
-    QString resultVar;
     onelementwindow *oneElementWindow;
-    QString firstNumber;
-    QString secondNumber;
-    int firstNumberInt;
-    int secondNumberInt;
-    int numberCount;
     QString time;
     Row row;
 };

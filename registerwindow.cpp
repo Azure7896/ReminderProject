@@ -12,6 +12,7 @@ registerwindow::registerwindow(QWidget *parent) :
     this -> setWindowTitle("Rejestracja");
     this->setFixedSize((QSize(480,500)));
     connectionCheck();
+
 }
 
 registerwindow::~registerwindow()

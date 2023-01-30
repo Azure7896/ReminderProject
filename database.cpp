@@ -75,7 +75,7 @@ QSqlQuery DataBase::loadFromDatabaseByPriority() {
 void DataBase::refreshIDs() {
     QSqlQuery query;
     query.prepare("UPDATE UserEntries SET id = id - 1 WHERE id > ?;");
-    query.addBindValue(idNumber);
+    //query.addBindValue(idNumber);
     query.exec();
     query.clear();
 }
@@ -94,13 +94,12 @@ void DataBase::queriesCountToOne(){
 
 void DataBase::addToDatabase(QString nameVar, QString dateVar, QString time, bool checkboxVar) {
         if (checkboxVar==true){
-            const QString priorityVar = "Ważne";
                 QSqlQuery query;
                    query.prepare("INSERT INTO UserEntries (Name, Date, Priority, Time) "
                                  "VALUES (?, ?, ?, ?);");
                    query.addBindValue(nameVar);
                    query.addBindValue(dateVar);
-                   query.addBindValue(priorityVar);
+                   query.addBindValue(priority);
                    query.addBindValue(time);
                    query.exec();
          } else {
@@ -115,13 +114,13 @@ void DataBase::addToDatabase(QString nameVar, QString dateVar, QString time, boo
 }
 
 
-void DataBase::deleteCurrent() {
-    QSqlQuery query;
+/*void DataBase::deleteCurrent() {
+      QSqlQuery query;
        query.prepare("DELETE FROM UserEntries WHERE id= ?;");
        query.addBindValue(idNumber);
        query.exec();
        query.clear();
-}
+}*/
 
 void DataBase::deleteAll() {
     QSqlQuery query;
@@ -132,7 +131,7 @@ void DataBase::deleteAll() {
 
 
 QString DataBase::nextRecord() {
-    idNumber++;
+    /*idNumber++;
     QString q = QString("SELECT id, Name, Date, Priority, Time FROM UserEntries WHERE id = %1 LIMIT 1;").arg(idNumber);
     QSqlQuery query(q);
     query.next();
@@ -156,7 +155,7 @@ QString DataBase::nextRecord() {
         priorityFromDatabaseToRemove = " ";
         QString result  = (QString("%1 | %2 | %3 |  ◔ %4:%5  ").arg(numberOfRowsFromDatabaseToRemove, nameFromDatabaseToRemove, dateFromDatabaseToRemove, time));
         return result;
-    }
+    }*/
 }
 
 QString DataBase::previousRecord() {

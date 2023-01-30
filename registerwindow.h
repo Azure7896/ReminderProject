@@ -13,12 +13,12 @@ class registerwindow : public QDialog
     Q_OBJECT
 
 public:
-    void connectionCheck();
     explicit registerwindow(QWidget *parent = nullptr);
     ~registerwindow();
 private slots:
     void on_registerbutton_clicked();
 private:
+    void connectionCheck();
     Ui::registerwindow *ui;
     DataBase databaseController;
     QString registerLogin;
