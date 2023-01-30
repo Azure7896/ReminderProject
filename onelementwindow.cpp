@@ -56,13 +56,8 @@ void onelementwindow::on_deleteAll_clicked()
 
 void onelementwindow::on_previousButton_clicked()
 {
-    //idNumber--;
-    //numberString = QVariant (idNumber).toString();
     dbResult = databaseController.previousRecord();
-    //ui->label->setText(dbResult);
     if (dbResult == "Brak rekordów.") {
-       // idNumber=idNumber+1;
-       // numberString = QVariant(idNumber).toString();
         ui->label->setText(dbResult);
         QMessageBox::information(this, "Error", "Przekroczyłeś maksymalną liczbę rekordów.");
         QString itemForPrint = databaseController.nextRecord();

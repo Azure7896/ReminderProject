@@ -1,12 +1,8 @@
 #include "row.h"
 
-Row::Row(/*QString name, QString date, QString hours, QString minutes, bool isPriority*/)
+Row::Row()
 {
-    /*this->name=name;
-    this-> date=date;
-    this->hours=hours;
-    this->minutes=minutes;
-    this->isPriority=isPriority;*/
+
 }
 
 QString Row::getName() {

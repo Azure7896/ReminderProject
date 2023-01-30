@@ -9,10 +9,6 @@
 #include <database.h>
 #include <search.h>
 
-
-
-
-
 namespace Ui {
 class Userentries;
 }
@@ -50,6 +46,8 @@ private:
     onelementwindow *oneElementWindow;
     QString time;
     Row row;
+    date date;
+    bool withActualDate;
 };
 
 

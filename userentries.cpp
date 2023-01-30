@@ -21,6 +21,7 @@ Userentries::Userentries(QWidget * parent):
     connectionCheck();
     on_loadAll_clicked();
     ui->nameLabel->setFocus();
+    ui->date->setText("Dziś mamy: " + date.createDate());
   }
 
 
@@ -49,12 +50,13 @@ void Userentries::on_addNewItemButton_clicked() {
       row.setHours(ui -> hourLine -> text());
       row.setMinutes(ui -> minuteLine -> text());
       row.setIsPriority(ui -> priorityCheckbox -> isChecked());
+      withActualDate = ui->checkBox->isChecked();
       time = row.getHours()+":"+row.getMinutes();
       if ((row.getName().size() > 17 || row.getName().size() < 4) || row.getDate().isEmpty() || row.getDate().size() > 10 || row.getHours().isEmpty() ||
         row.getHours().size() > 2 || row.getMinutes().isEmpty() || row.getMinutes().size() > 2 || row.getHours().toInt() > 23 || row.getMinutes().toInt() > 59) {
         QMessageBox::information(this, "Error", "Błędnie wprowadzone dane.");
       } else {
-        databaseController.addToDatabase(row.getName(), row.getDate(), time, row.getIsPriority());
+        databaseController.addToDatabase(row.getName(), row.getDate(), time, row.getIsPriority(), withActualDate);
         on_loadAll_clicked();
         QMessageBox::information(this, "Udało się!", "Rekord pomyślnie został dodany do bazy danych.");
     }

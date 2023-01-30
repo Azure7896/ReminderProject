@@ -1,6 +1,7 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
+#include "date.h"
 #include "user.h"
 
 #include <QtSql>
@@ -13,7 +14,8 @@ class DataBase {
   bool createConnection();
   bool login(User user);
   void registerAccount(User user);
-  void addToDatabase(QString nameVar, QString dateVar, QString time, bool checkboxVar);
+  void addToDatabase(QString nameVar, QString dateVar, QString time, bool checkboxVar, bool withActualDate);
+
   QSqlQuery loadFromDatabase();
   QSqlQuery loadFromDatabaseByDesc();
   QSqlQuery loadFromDatabaseByAscend();
@@ -40,6 +42,7 @@ class DataBase {
   QString encryptedPassword;
   int queriesCount = 1;
   QString result;
+  date date;
 
 };
 

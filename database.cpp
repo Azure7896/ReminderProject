@@ -92,8 +92,9 @@ void DataBase::queriesCountToOne(){
     queriesCount = 1;
 }
 
-void DataBase::addToDatabase(QString nameVar, QString dateVar, QString time, bool checkboxVar) {
-        if (checkboxVar==true){
+void DataBase::addToDatabase(QString nameVar, QString dateVar, QString time, bool checkboxVar, bool withActualDate) {
+    if (withActualDate) {dateVar=date.createDate();}
+        if (checkboxVar){
                 QSqlQuery query;
                    query.prepare("INSERT INTO UserEntries (Name, Date, Priority, Time) "
                                  "VALUES (?, ?, ?, ?);");
