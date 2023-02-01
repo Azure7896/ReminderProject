@@ -38,6 +38,7 @@ void MainWindow::on_loginButton_clicked() {
   user.setPassword(ui->password_line -> text());
   if (databaseController.login(user)) {
       QMessageBox::information(this, "Witaj w ReminderProject!", "Zalogowano pomyślnie. Naciśnij OK, aby kontyunować.");
+      databaseController.updateActiveUser(databaseController.getUserId(user));
       hide();
       UserEntries = new Userentries(this);
       UserEntries -> show();

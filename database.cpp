@@ -25,6 +25,20 @@ bool DataBase::login(User user) {
         return query.first();
 }
 
+void DataBase::updateActiveUser(int userId) {
+    QSqlQuery query;
+    query.prepare("UPDATE ActiveUser SET userId = ? WHERE id = 1");
+    query.addBindValue(userId);
+    query.exec();
+}
+
+int DataBase::getUserId(User user) {
+    int result;
+    QSqlQuery query;
+        query.prepare("SELECT UserID FROM Users WHERE name= ?");
+        query.addBindValue(user.getName());
+}
+
 void DataBase::registerAccount(User user) {
     QByteArray bytes = QCryptographicHash::hash(user.getPassword().toUtf8(), QCryptographicHash::Md5);
     encryptedPassword= QString(bytes.toHex());
@@ -113,6 +127,7 @@ void DataBase::addToDatabase(QString nameVar, QString dateVar, QString time, boo
                    query.exec();
           }
 }
+
 
 
 /*void DataBase::deleteCurrent() {

@@ -27,6 +27,8 @@ class DataBase {
   void queriesCountToOne();
   int returnQueriesCount();
 
+  int getUserId(User user);
+  void updateActiveUser(int userId);
   QString nextRecord();
   QString previousRecord();
 
