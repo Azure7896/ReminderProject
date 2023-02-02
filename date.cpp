@@ -7,6 +7,7 @@ date::date()
 
 }
 
+//Date creating
 QString date::createDate() {
     QDateTime date = QDateTime::currentDateTime();
     QString formattedTime = date.toString("dd/MM/yyyy");
