@@ -35,6 +35,9 @@ void registerwindow::on_registerbutton_clicked()
     if (user.getName().isEmpty() || user.getName().size()>10){
         QMessageBox::information(this, " ", "Nie wprowadziłeś loginu, bądź login ma powyżej 10 znaków.");
     }
+    else if (databaseController.isRegistered(user)) {
+        QMessageBox::information(this, " ", "Istnieje juz uzytkownik o podanym loginie.");
+    }
 
     else if (user.getPassword().size()>30 || user.getPassword().size()>30) {
         QMessageBox::information(this, " ", "Hasło jest zbyt długie.");

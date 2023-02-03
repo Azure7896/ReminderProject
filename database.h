@@ -15,6 +15,7 @@ class DataBase {
   bool login(User user);
   void registerAccount(User user);
   void addToDatabase(QString nameVar, QString dateVar, QString time, bool checkboxVar, bool withActualDate);
+  bool isRegistered(User user);
 
   QSqlQuery loadFromDatabase();
   QSqlQuery loadFromDatabaseByDesc();

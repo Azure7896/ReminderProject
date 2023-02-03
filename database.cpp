@@ -22,6 +22,14 @@ bool DataBase::login(User user) {
   return query.first();
 }
 
+bool DataBase::isRegistered(User user) {
+    QSqlQuery query;
+    query.prepare("SELECT name FROM Users WHERE name= ?");
+    query.addBindValue(user.getName());
+    query.exec();
+    return query.first();
+}
+
 void DataBase::updateActiveUser(int userId) {
   QSqlQuery query;
   query.prepare("UPDATE ActiveUser SET userId = ? WHERE id = 1");
