@@ -24,11 +24,11 @@ class DataBase {
   QSqlQuery loadFromDatabaseByPriority();
 
   void deleteAll();
-  void refreshIDs();
   void queriesCountToOne();
   int returnQueriesCount();
 
   int getUserId(User user);
+  int getActiveUserId();
   void updateActiveUser(int userId);
   QString nextRecord();
   QString previousRecord();
@@ -46,6 +46,7 @@ class DataBase {
   int queriesCount = 1;
   QString result;
   date date;
+
 
 };
 

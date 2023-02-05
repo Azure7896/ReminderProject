@@ -48,6 +48,7 @@ private:
     Row row;
     date date;
     bool withActualDate;
+    int activeUserId;
 };
 
 

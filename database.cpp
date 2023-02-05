@@ -37,15 +37,27 @@ void DataBase::updateActiveUser(int userId) {
   query.exec();
 }
 
+int DataBase::getActiveUserId() {
+    int id = 0;
+     QSqlQuery query;
+     query.prepare("SELECT user_id FROM ActiveUser WHERE id = 1");
+     query.exec();
+     while (query.next()) {
+       id = query.value(0).toInt();
+     }
+     return id;
+}
+
 int DataBase::getUserId(User user) {
-  int id = 0;
-  QSqlQuery query;
-  query.prepare("SELECT user_id FROM Users WHERE username = ?");
-  query.addBindValue(user.getName());
-  while (query.next()) {
-    id = query.value(0).toInt();
-  }
-  return id;
+    int id = 0;
+     QSqlQuery query;
+     query.prepare("SELECT user_id FROM Users WHERE username = ?");
+     query.addBindValue(user.getName());
+     query.exec();
+     while (query.next()) {
+       id = query.value(0).toInt();
+     }
+     return id;
 }
 
 void DataBase::registerAccount(User user) {
@@ -60,47 +72,45 @@ void DataBase::registerAccount(User user) {
 }
 
 QSqlQuery DataBase::loadFromDatabase() {
-  QString q = QString("SELECT Name, Date, Priority, Time FROM UserEntries");
-  QSqlQuery query(q);
+  QSqlQuery query;
+  query.prepare("SELECT Name, Date, Priority, Time FROM UserEntries WHERE user_id = ?");
+  query.addBindValue(getActiveUserId());
   query.exec();
   return query;
 }
 
 QSqlQuery DataBase::loadFromDatabaseByDesc() {
-  QString q = QString("SELECT Name, Date, Priority, Time FROM UserEntries ORDER BY Name desc");
-  QSqlQuery query(q);
+  QSqlQuery query;
+  query.prepare("SELECT Name, Date, Priority, Time FROM UserEntries WHERE user_id = ? ORDER BY Name desc");
+  query.addBindValue(getActiveUserId());
   query.exec();
   return query;
 }
 
 QSqlQuery DataBase::loadFromDatabaseByAscend() {
-  QString q = QString("SELECT Name, Date, Priority, Time FROM UserEntries ORDER BY Name");
-  QSqlQuery query(q);
+  QSqlQuery query;
+  query.prepare("SELECT Name, Date, Priority, Time FROM UserEntries WHERE user_id = ? ORDER BY Name");
+  query.addBindValue(getActiveUserId());
   query.exec();
   return query;
 }
 
 QSqlQuery DataBase::loadFromDatabaseByItem(QString item) {
   QSqlQuery query;
-  query.prepare("SELECT Name, Date, Priority, Time FROM UserEntries WHERE name LIKE ?");
+  query.prepare("SELECT Name, Date, Priority, Time FROM UserEntries WHERE user_id = ? AND"
+                " name LIKE ? ");
+  query.addBindValue(getActiveUserId());
   query.addBindValue("%%" + item + "%");
   query.exec();
   return query;
 }
 
 QSqlQuery DataBase::loadFromDatabaseByPriority() {
-  QString q = QString("SELECT Name, Date, Priority, Time FROM UserEntries ORDER BY Priority desc");
-  QSqlQuery query(q);
+  QSqlQuery query;
+  query.prepare("SELECT Name, Date, Priority, Time FROM UserEntries WHERE user_id = ? ORDER BY Priority desc");
+  query.addBindValue(getActiveUserId());
   query.exec();
   return query;
-}
-
-void DataBase::refreshIDs() {
-  QSqlQuery query;
-  query.prepare("UPDATE UserEntries SET id = id - 1 WHERE id > ?;");
-  //query.addBindValue(idNumber);
-  query.exec();
-  query.clear();
 }
 
 int DataBase::returnQueriesCount() {
@@ -121,20 +131,22 @@ void DataBase::addToDatabase(QString nameVar, QString dateVar, QString time, boo
   }
   if (checkboxVar) {
     QSqlQuery query;
-    query.prepare("INSERT INTO UserEntries (Name, Date, Priority, Time) "
-      "VALUES (?, ?, ?, ?);");
+    query.prepare("INSERT INTO UserEntries (Name, Date, Priority, Time, user_id) "
+      "VALUES (?, ?, ?, ?, ?);");
     query.addBindValue(nameVar);
     query.addBindValue(dateVar);
     query.addBindValue(priority);
     query.addBindValue(time);
+    query.addBindValue(getActiveUserId());
     query.exec();
   } else {
     QSqlQuery query;
-    query.prepare("INSERT INTO UserEntries (Name, Date, Priority, Time) "
-      "VALUES (?, ?, '-', ?);");
+    query.prepare("INSERT INTO UserEntries (Name, Date, Priority, Time, user_id) "
+      "VALUES (?, ?, '-', ?, ?);");
     query.addBindValue(nameVar);
     query.addBindValue(dateVar);
     query.addBindValue(time);
+    query.addBindValue(getActiveUserId());
     query.exec();
   }
 }
@@ -149,7 +161,8 @@ void DataBase::addToDatabase(QString nameVar, QString dateVar, QString time, boo
 
 void DataBase::deleteAll() {
   QSqlQuery query;
-  query.prepare("DELETE FROM UserEntries;");
+  query.prepare("DELETE FROM UserEntries WHERE user_id = ?");
+  query.addBindValue(getActiveUserId());
   query.exec();
   query.clear();
 }
