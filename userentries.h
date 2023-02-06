@@ -38,6 +38,8 @@ private slots:
 
     void on_byPriority_clicked();
 
+    void on_Wyloguj_clicked();
+
 private:
     Ui::Userentries *ui;
     void connectionCheck();

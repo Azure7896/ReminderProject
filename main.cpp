@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 {
     QApplication Reminder(argc, argv);
 
-    startlogo w;
-    w.show();
+    startlogo startLogo;
+    startLogo.show();
     return Reminder.exec();
 }

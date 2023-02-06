@@ -33,31 +33,9 @@ void onelementwindow::on_pushButton_clicked() {
   }
 }
 
-//void onelementwindow::on_nextButton_clicked() {
-//  dbResult = databaseController.nextRecord();
-//  if (dbResult == "Brak rekordów.") {
-//    QMessageBox::information(this, "Error", "Przekroczyłeś maksymalną liczbę rekordów.");
-//    QString itemForPrint = databaseController.previousRecord();
-//    ui -> label -> setText(itemForPrint);
-//  } else {
-//    ui -> label -> setText(dbResult);
-//  }
-//}
-
 void onelementwindow::on_deleteAll_clicked() {
   if (QMessageBox::Yes == QMessageBox::question(this, "Usuwanie zawartości bazy danych", "Czy na pewno chcesz usunąć wszystkie rekordy?", QMessageBox::Yes | QMessageBox::No))
     databaseController.deleteAll();
 
 }
 
-//void onelementwindow::on_previousButton_clicked() {
-//  dbResult = databaseController.previousRecord();
-//  if (dbResult == "Brak rekordów.") {
-//    ui -> label -> setText(dbResult);
-//    QMessageBox::information(this, "Error", "Przekroczyłeś maksymalną liczbę rekordów.");
-//    QString itemForPrint = databaseController.nextRecord();
-//    ui -> label -> setText(itemForPrint);
-//  } else {
-//    ui -> label -> setText(dbResult);
-//  }
-//}

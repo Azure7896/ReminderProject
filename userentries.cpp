@@ -10,6 +10,11 @@
 
 #include <QListWidgetItem>
 
+#include <QPrinter>
+#include <QPrintDialog>
+#include <QPainter>
+
+
 
 Userentries::Userentries(QWidget * parent):
   QDialog(parent),
@@ -112,4 +117,5 @@ void Userentries::on_byPriority_clicked()
     view -> setModel(model);
     ui -> tableView -> setModel(model);
 }
+
 

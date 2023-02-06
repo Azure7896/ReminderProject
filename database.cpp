@@ -151,14 +151,6 @@ void DataBase::addToDatabase(QString nameVar, QString dateVar, QString time, boo
   }
 }
 
-/*void DataBase::deleteCurrent() {
-      QSqlQuery query;
-       query.prepare("DELETE FROM UserEntries WHERE id= ?;");
-       query.addBindValue(idNumber);
-       query.exec();
-       query.clear();
-}*/
-
 void DataBase::deleteAll() {
   QSqlQuery query;
   query.prepare("DELETE FROM UserEntries WHERE user_id = ?");
