@@ -10454,7 +10454,7 @@ border-color: rgb(0, 0, 0);
     <string>Dzisiejsza data</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="Wyloguj">
+  <widget class="QPushButton" name="Print">
    <property name="geometry">
     <rect>
      <x>520</x>
@@ -10464,7 +10464,7 @@ border-color: rgb(0, 0, 0);
     </rect>
    </property>
    <property name="text">
-    <string>Wyloguj</string>
+    <string>Drukuj</string>
    </property>
   </widget>
   <zorder>logo</zorder>
@@ -10499,7 +10499,7 @@ border-color: rgb(0, 0, 0);
   <zorder>label_9</zorder>
   <zorder>date</zorder>
   <zorder>checkBox</zorder>
-  <zorder>Wyloguj</zorder>
+  <zorder>Print</zorder>
  </widget>
  <resources>
   <include location="resurces.qrc"/>

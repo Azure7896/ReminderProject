@@ -119,3 +119,13 @@ void Userentries::on_byPriority_clicked()
 }
 
 
+
+void Userentries::on_Print_clicked()
+{
+//    QSqlQueryModel * model = new QSqlQueryModel();
+//    model -> setQuery(databaseController.loadFromDatabaseByPriority());
+//    QTableView * view = new QTableView;
+//     view -> setModel(model);
+//    printer.printRecords(ui->tableView->setModel(model));
+}
+

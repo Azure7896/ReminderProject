@@ -12,12 +12,10 @@ bool DataBase::createConnection() {
 }
 
 bool DataBase::login(User user) {
-  QByteArray bytes = QCryptographicHash::hash(user.getPassword().toUtf8(), QCryptographicHash::Md5);
-  encryptedPassword = QString(bytes.toHex());
   QSqlQuery query;
   query.prepare("SELECT username, password FROM Users WHERE username= ? AND password = ?");
   query.addBindValue(user.getName());
-  query.addBindValue(encryptedPassword);
+  query.addBindValue(encryptor.encryptPassword(user.getPassword()));
   query.exec();
   return query.first();
 }
@@ -61,13 +59,11 @@ int DataBase::getUserId(User user) {
 }
 
 void DataBase::registerAccount(User user) {
-  QByteArray bytes = QCryptographicHash::hash(user.getPassword().toUtf8(), QCryptographicHash::Md5);
-  encryptedPassword = QString(bytes.toHex());
   QSqlQuery query;
   query.prepare("INSERT INTO Users (username, password) "
     "VALUES (?, ?);");
   query.addBindValue(user.getName());
-  query.addBindValue(encryptedPassword);
+  query.addBindValue(encryptor.encryptPassword(user.getPassword()));
   query.exec();
 }
 

@@ -2,6 +2,7 @@
 #define DATABASE_H
 
 #include "date.h"
+#include "encryptor.h"
 #include "user.h"
 
 #include <QtSql>
@@ -46,6 +47,7 @@ class DataBase {
   int queriesCount = 1;
   QString result;
   date date;
+  Encryptor encryptor;
 
 
 };

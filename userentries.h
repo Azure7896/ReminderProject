@@ -8,6 +8,7 @@
 #include <onelementwindow.h>
 #include <database.h>
 #include <search.h>
+#include <printer.h>
 
 namespace Ui {
 class Userentries;
@@ -38,7 +39,7 @@ private slots:
 
     void on_byPriority_clicked();
 
-    void on_Wyloguj_clicked();
+    void on_Print_clicked();
 
 private:
     Ui::Userentries *ui;
@@ -51,6 +52,7 @@ private:
     date date;
     bool withActualDate;
     int activeUserId;
+    Printer printer;
 };
 
 
