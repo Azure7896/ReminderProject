@@ -14,6 +14,7 @@ onelementwindow::onelementwindow(QWidget * parent):
     ui -> setupUi(this);
     this -> setWindowTitle("Usuwanie rekordów");
     connectionCheck();
+    QMessageBox::information(this, "Brak funkcjonalności", "Usuwanie pojedynczych rekordów zostanie dodane wkrótce.");
   }
 
 void onelementwindow::connectionCheck() {
