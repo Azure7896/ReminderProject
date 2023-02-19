@@ -33,6 +33,8 @@ Login and register window:
 
 ![image](https://user-images.githubusercontent.com/95986791/218511558-f016b48c-0242-4f01-85ae-7dda5e7e4792.png)
 
+![image](https://user-images.githubusercontent.com/95986791/219956057-e99cd990-72d6-48e8-bdb9-d88b23eaad35.png)
+
 Registration validation:
 
 ![image](https://user-images.githubusercontent.com/95986791/218511815-9539edd8-228c-47b9-b698-1b23d3328915.png)
